@@ -1,0 +1,22 @@
+{
+  "name": "koa2-server",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "syncDB": "node db/sync.js",
+    "server": "node src/app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "koa": "^2.8.2",
+    "koa-bodyparser": "^4.2.1",
+    "koa-router": "^7.4.0",
+    "mysql": "^2.17.1",
+    "mysql2": "^1.7.0",
+    "sequelize": "^5.19.6"
+  }
+}
