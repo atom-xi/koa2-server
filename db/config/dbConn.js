@@ -30,7 +30,7 @@ var Sequelize = require('sequelize');
 var sqlConfig = {
   host: "localhost",
   user: "root",
-  password: "123456",
+  password: "123456789",
   database: "test"
 };
 

@@ -14,44 +14,60 @@
 // // 在端口3000监听:
 // app.listen(3000);
 // console.log('app started at port 3000...');
-const Koa = require('koa');
+// const Koa = require('koa');
 
 // 注意require('koa-router')返回的是函数:
+// const bodyParser = require('koa-bodyparser');
+
+// const app = new Koa();
+// app.use(bodyParser());
+
+// router.post('/signin', async (ctx, next) => {
+//   var name = ctx.request.body.name || '', password = ctx.request.body.password || '';
+//   console.log(`signin with name: ${name}, password: ${password}`);
+//   if (name === 'koa' && password === '12345') {
+//     ctx.response.body = `<h1>Welcome, ${name}!</h1>`;
+//   } else {
+//     ctx.response.body = `<h1>Login failed!</h1>
+//       <p><a href="/">Try again</a></p>`;
+//   }
+// });
+
+// // log request URL:
+// app.use(async (ctx, next) => {
+//   console.log(`Process ${ctx.request.method} ${ctx.request.url}...`);
+//   await next();
+// });
+// router.get('/', async (ctx, next) => {
+//   ctx.response.body = '<h1>Index</h1>';
+// });
+// // add url-route:
+// router.get('/hello/:name', async (ctx, next) => {
+//   var name = ctx.params.name;
+//   ctx.response.body = `<h1>Hello, ${name}!</h1>`;
+// });
+
+
+// // add router middleware:
+// app.use(router.routes());
+
+// app.listen(3000);
+// console.log('app started at port 3000...');
+// https://juejin.im/post/5d3c51ad6fb9a07ead5a42bf#heading-5
+const Koa = require("koa");
+const app = new Koa();
 const router = require('koa-router')();
 const bodyParser = require('koa-bodyparser');
-
-const app = new Koa();
 app.use(bodyParser());
 
-router.post('/signin', async (ctx, next) => {
-  var name = ctx.request.body.name || '', password = ctx.request.body.password || '';
-  console.log(`signin with name: ${name}, password: ${password}`);
-  if (name === 'koa' && password === '12345') {
-    ctx.response.body = `<h1>Welcome, ${name}!</h1>`;
-  } else {
-    ctx.response.body = `<h1>Login failed!</h1>
-      <p><a href="/">Try again</a></p>`;
-  }
-});
-
-// log request URL:
-app.use(async (ctx, next) => {
-  console.log(`Process ${ctx.request.method} ${ctx.request.url}...`);
-  await next();
-});
-router.get('/', async (ctx, next) => {
-  ctx.response.body = '<h1>Index</h1>';
-});
-// add url-route:
-router.get('/hello/:name', async (ctx, next) => {
-  var name = ctx.params.name;
-  ctx.response.body = `<h1>Hello, ${name}!</h1>`;
-});
-
-
-
-// add router middleware:
+app.use(async ctx => ctx.body = '服务启动成功');
 app.use(router.routes());
+app.use(router.allowedMethods());
+router.use('/articles', articleRouter.routes(), articleRouter.allowedMethods())
+const appService = app.listen(3000, () => {
+  console.log('[Koa]Server is starting at localhost:3000');
+});
 
-app.listen(3000);
-console.log('app started at port 3000...');
+// 导出服务(是为了供单测使用)
+// 即使这里不导出也正常可以跑项目，后面会讲解这里为什么需要导出
+module.exports = appService;

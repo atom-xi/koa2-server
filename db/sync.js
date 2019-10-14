@@ -19,5 +19,6 @@ for (var f of js_files) {
   module.exports[name] = require(__dirname + '/models/' + f);
 }
 
-console.log("sequelize-->", sequelize)
-sequelize.sync();
+sequelize.sync({
+  force: true  // 强制同步，先删除表，然后新建
+});
