@@ -43,7 +43,6 @@ function addMiddleware(router, files_arr) {
 //创建接口
 function createInterface(router, routeItem) {
   if (!routeItem.method || !routeItem.url || !routeItem.fun) {
-    console.log("123")
     console.log("**********************************")
     console.log(`${routeItem.fileName} file is error`)
     console.log(`${routeItem.fileName} in ${routeItem.filePath} `)
