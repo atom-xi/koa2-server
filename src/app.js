@@ -12,6 +12,7 @@ app.use(routerMiddleware("./routers"))
 const port = 3002
 app.listen(port, () => {
   console.log("----------------------------------")
+  console.log("----------------------------------")
   console.log(`koa2 is working on port ${port}...`)
   console.log("----------------------------------")
 })

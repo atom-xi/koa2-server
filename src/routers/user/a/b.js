@@ -1,5 +1,10 @@
 module.exports = {
   method: "GET",
-  url: "/b",
-  fun: () => { }
+  url: "/user/a/b",
+  fun: async (ctx) => {
+    ctx.response.body = {
+      code: "0",
+      message: "b is success"
+    }
+  }
 }

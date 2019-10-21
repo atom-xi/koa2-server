@@ -26,6 +26,7 @@ function getFilesArr(_path) {
       })
     }
   }
+
   findFiles(_path)
   return filesArr
 }

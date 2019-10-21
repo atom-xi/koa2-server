@@ -1,6 +1,6 @@
 module.exports = {
   method: "GET",
-  url: "/a",
+  url: "/user/a/a",
   fun: async (ctx) => {
     ctx.response.body = {
       code: "0",
