@@ -50,12 +50,13 @@ function createInterface(router, routeItem) {
     console.log("**********************************")
     return false
   }
+  let url = "/api" + routeItem.url;
   switch (routeItem.method) {
     case "GET":
-      router.get(routeItem.url, routeItem.fun);
+      router.get(url, routeItem.fun);
       break;
     case "POST":
-      router.post(routeItem.url, routeItem.fun);
+      router.post(url, routeItem.fun);
       break;
     default:
       break;
